@@ -50,7 +50,7 @@ function App() {
     <div className="app-shell">
       <aside className="sidebar">
         <div className="brand-lockup">
-          <span className="brand-badge">Dashborad</span>
+          <span className="brand-badge">Dashboard</span>
           <span className="brand-subtitle">Vite + React starter</span>
         </div>
 
