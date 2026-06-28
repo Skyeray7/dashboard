@@ -11,7 +11,10 @@ export function MetricCard({ metric }: MetricCardProps) {
         <span>{metric.label}</span>
         <strong>{metric.delta}</strong>
       </div>
-      <p className="metric-value">{metric.value}</p>
+      <div className="metric-value-row">
+        <p className="metric-value">{metric.value}</p>
+        {metric.unit ? <span className="metric-unit">{metric.unit}</span> : null}
+      </div>
       <p className="metric-note">{metric.note}</p>
     </article>
   )

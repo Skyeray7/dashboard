@@ -6,24 +6,24 @@ type SignalChartProps = {
 
 export function SignalChart({ points }: SignalChartProps) {
   return (
-    <div className="signal-card">
+    <article className="signal-card">
       <div className="signal-header">
-        <span>Build Momentum</span>
-        <strong>Current readiness</strong>
+        <span>Evidence control</span>
+        <strong>0-100</strong>
       </div>
-      <div className="signal-chart" aria-label="Build momentum chart">
+      <div className="signal-chart" aria-label="Evidence control score chart">
         {points.map((point) => (
-          <div className="signal-column" key={point.label}>
-            <div
-              className="signal-bar"
-              style={{ height: `${Math.max(point.value, 18)}%` }}
-            >
-              <span>{point.value}</span>
+          <div className="signal-row" key={point.label}>
+            <div className="signal-row__label">
+              <span>{point.label}</span>
+              <strong>{point.value}</strong>
             </div>
-            <p>{point.label}</p>
+            <div className="signal-track">
+              <span style={{ width: `${Math.max(point.value, 6)}%` }} />
+            </div>
           </div>
         ))}
       </div>
-    </div>
+    </article>
   )
 }

@@ -1,10 +1,17 @@
-export type DashboardView = 'overview' | 'showcase' | 'timeline'
+export type DashboardView =
+  | 'overview'
+  | 'water'
+  | 'ecology'
+  | 'thermal'
+  | 'context'
+  | 'evidence'
 
-export type MetricTone = 'positive' | 'neutral' | 'attention'
+export type MetricTone = 'water' | 'vegetation' | 'thermal' | 'neutral' | 'caution'
 
 export type Metric = {
   label: string
   value: string
+  unit?: string
   delta: string
   note: string
   tone: MetricTone
@@ -13,6 +20,48 @@ export type Metric = {
 export type SignalPoint = {
   label: string
   value: number
+}
+
+export type TrendPoint = {
+  year: number
+  value: number
+  quality?: string
+}
+
+export type TrendDataset = {
+  label: string
+  color: string
+  points: TrendPoint[]
+}
+
+export type PhaseStat = {
+  label: string
+  group: DashboardView
+  pre: string
+  caution2014: string
+  operation: string
+  interpretation: string
+}
+
+export type FigureItem = {
+  title: string
+  group: DashboardView
+  src: string
+  caption: string
+  emphasis?: 'wide' | 'standard'
+}
+
+export type EvidenceClaim = {
+  claim: string
+  evidence: string
+  caution: string
+}
+
+export type ViewMeta = {
+  id: DashboardView
+  label: string
+  eyebrow: string
+  summary: string
 }
 
 export type SpotlightItem = {
@@ -24,60 +73,26 @@ export type SpotlightItem = {
   metric: string
 }
 
-export type TimelineEntry = {
-  date: string
-  title: string
-  summary: string
-  tag: string
-}
-
-export type ResourceItem = {
-  title: string
-  kind: string
-  readiness: string
-  owner: string
-  summary: string
-}
-
-export type ChecklistItem = {
-  title: string
-  due: string
-  status: string
-}
-
-export type QuickLink = {
-  label: string
-  value: string
-  href: string
-}
-
-export type CollectionItem = {
-  title: string
-  caption: string
-  image: string
-  format: string
-}
-
 export type DashboardContent = {
   profile: {
-    name: string
-    description: string
-    coverImage: string
-    highlights: string[]
+    title: string
+    subtitle: string
+    studyArea: string
+    period: string
+    sourceNote: string
   }
-  hero: {
-    eyebrow: string
-    focus: string
-    description: string
-    note: string
-    tags: string[]
-  }
+  views: ViewMeta[]
   metrics: Metric[]
   signals: SignalPoint[]
-  spotlight: SpotlightItem[]
-  timeline: TimelineEntry[]
-  resources: ResourceItem[]
-  checklist: ChecklistItem[]
-  quickLinks: QuickLink[]
-  collections: CollectionItem[]
+  trendDatasets: {
+    waterArea: TrendDataset[]
+    waterValidation: TrendDataset[]
+    ecology: TrendDataset[]
+    thermal: TrendDataset[]
+    climate: TrendDataset[]
+  }
+  phaseStats: PhaseStat[]
+  figures: FigureItem[]
+  claims: EvidenceClaim[]
+  qualityNotes: string[]
 }
